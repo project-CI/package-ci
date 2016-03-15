@@ -9,7 +9,8 @@
  * Tinytest unit tests
  * @namespace Tinytest
  */
-
+// const Bunyan = Npm.require('bunyan');
+// const Logger = Bunyan.createLogger({ 'name': 'ci4meteor' });
 /**
  * Simply verifies that true equals true
  * @name sanityCheckEQ
@@ -19,6 +20,8 @@
  * @return {None}
  */
 Tinytest.add('Check Equality', function sanityCheckEQ(test) {
+  // Logger.info('ººº Yoo Hoo ººº');                           //  ADD! <--
+  // console.log('ººº Yoo Hoo ººº');
   test.equal(true, true);
 });
 
@@ -31,5 +34,6 @@ Tinytest.add('Check Equality', function sanityCheckEQ(test) {
  * @return {None}
  */
 Tinytest.add('Check inequality', function sanityCheckNEQ(test) {
-  test.notEqual(true, false);
+  test.equal(true, true);
+  // console.log('ººº Yoo Hoo ººº');
 });
