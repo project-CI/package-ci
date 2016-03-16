@@ -1,0 +1,45 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/**
+<span class='line'>  2</span>  * @fileOverview The unit tests for "package-ci".
+<span class='line'>  3</span>  * @author Rongky &lt;rongkyr3@yahoo.com>
+<span class='line'>  4</span>  * @version v0.0.1
+<span class='line'>  5</span>  * @license MIT
+<span class='line'>  6</span>  */</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/**
+<span class='line'>  9</span>  * NightWatch End-to-end Tests
+<span class='line'> 10</span>  * @namespace EndToEndTests
+<span class='line'> 11</span>  **/</span><span class="WHIT">
+<span class='line'> 12</span> 
+<span class='line'> 13</span> </span><span class="COMM">/**
+<span class='line'> 14</span>  * Can we retrieve pets by their ID numbers?
+<span class='line'> 15</span>  * @name obtainPetsByIds
+<span class='line'> 16</span>  * @memberof EndToEndTests
+<span class='line'> 17</span>  * @function
+<span class='line'> 18</span>  * @param  null
+<span class='line'> 19</span>  * @return {None}
+<span class='line'> 20</span>  */</span><span class="WHIT">
+<span class='line'> 21</span> </span><span class="NAME">module.exports</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 22</span> </span><span class="WHIT">  </span><span class="STRN">'Step Through Pets'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">obtainPetsByIds</span><span class="PUNC">(</span><span class="NAME">client</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">    </span><span class="NAME">client</span><span class="WHIT">
+<span class='line'> 24</span> </span><span class="WHIT">      </span><span class="PUNC">.</span><span class="NAME">url</span><span class="PUNC">(</span><span class="STRN">'http://localhost:3000'</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 25</span> </span><span class="WHIT">      </span><span class="PUNC">.</span><span class="NAME">waitForElementVisible</span><span class="PUNC">(</span><span class="STRN">'body'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">1000</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">      </span><span class="PUNC">.</span><span class="NAME">verify.elementPresent</span><span class="PUNC">(</span><span class="STRN">'button[id=nextPet]'</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="WHIT">      </span><span class="PUNC">.</span><span class="NAME">verify.elementPresent</span><span class="PUNC">(</span><span class="STRN">'p[id=petNote]'</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="WHIT">      </span><span class="PUNC">.</span><span class="NAME">assert.containsText</span><span class="PUNC">(</span><span class="STRN">'p[id=petNote]'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'6133627026'</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 29</span> </span><span class="WHIT">      </span><span class="PUNC">.</span><span class="NAME">assert.containsText</span><span class="PUNC">(</span><span class="STRN">'p[id=petNote]'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'unknown'</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 30</span> </span><span class="WHIT">      </span><span class="PUNC">.</span><span class="NAME">click</span><span class="PUNC">(</span><span class="STRN">'button[id=nextPet]'</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 31</span> </span><span class="WHIT">      </span><span class="PUNC">.</span><span class="NAME">pause</span><span class="PUNC">(</span><span class="NUMB">3000</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 32</span> </span><span class="WHIT">      </span><span class="PUNC">.</span><span class="NAME">assert.containsText</span><span class="PUNC">(</span><span class="STRN">'p[id=petNote]'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'6133627027'</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="WHIT">      </span><span class="PUNC">.</span><span class="NAME">assert.containsText</span><span class="PUNC">(</span><span class="STRN">'p[id=petNote]'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'weasel'</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 34</span> 
+<span class='line'> 35</span> </span><span class="WHIT">      </span><span class="PUNC">.</span><span class="NAME">end</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 37</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 38</span> </span></pre></body></html>

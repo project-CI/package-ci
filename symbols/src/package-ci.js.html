@@ -1,0 +1,126 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/**
+<span class='line'>  2</span>  * @fileOverview The main program for "package-ci".  This where the exported entities reside.
+<span class='line'>  3</span>  * @author Rongky &lt;rongkyr3@yahoo.com>
+<span class='line'>  4</span>  * @version v0.0.1
+<span class='line'>  5</span>  * @requires swagger-client
+<span class='line'>  6</span>  * @license MIT
+<span class='line'>  7</span>  */</span><span class="WHIT">
+<span class='line'>  8</span> 
+<span class='line'>  9</span> </span><span class="COMM">/**
+<span class='line'> 10</span>  * The PetStore name space
+<span class='line'> 11</span>  * @namespace PetStore
+<span class='line'> 12</span>  * @description  Represents a proxy to the Swgger demo API, 'PetSore'. &lt;a href='http://petstore.swagger.io/' target='_blank'>Full API specification&lt;/a>
+<span class='line'> 13</span>  */</span><span class="WHIT">
+<span class='line'> 14</span> 
+<span class='line'> 15</span> </span><span class="COMM">/**
+<span class='line'> 16</span>  * The Meteor name space
+<span class='line'> 17</span>  * @namespace Meteor
+<span class='line'> 18</span>  * @description  The global name space for any object needing exposure to the innards of a Meteor application
+<span class='line'> 19</span>  */</span><span class="WHIT">
+<span class='line'> 20</span> 
+<span class='line'> 21</span> </span><span class="COMM">/**
+<span class='line'> 22</span>  * @constant
+<span class='line'> 23</span>  * @description  An instance of the NodeJS module 'swagger-client'
+<span class='line'> 24</span>  * Used to instaniate proxies of remote REST APIs that
+<span class='line'> 25</span>  * publish Swagger format specifications
+<span class='line'> 26</span>  * @type swagger-client
+<span class='line'> 27</span>  * @memberof PetStore
+<span class='line'> 28</span>  * @inner
+<span class='line'> 29</span>  */</span><span class="WHIT">
+<span class='line'> 30</span> </span><span class="KEYW">const</span><span class="WHIT"> </span><span class="NAME">Client</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Npm.require</span><span class="PUNC">(</span><span class="STRN">'swagger-client'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 31</span> 
+<span class='line'> 32</span> </span><span class="COMM">/**
+<span class='line'> 33</span>  * @constant
+<span class='line'> 34</span>  * @description  Text representation of the URL of the REST API this package will proxy.
+<span class='line'> 35</span>  * @type String
+<span class='line'> 36</span>  * @memberof PetStore
+<span class='line'> 37</span>  * @inner
+<span class='line'> 38</span>  */</span><span class="WHIT">
+<span class='line'> 39</span> </span><span class="KEYW">const</span><span class="WHIT"> </span><span class="NAME">swaggerSpecURL</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'http://petstore.swagger.io/v2/swagger.json'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 40</span> 
+<span class='line'> 41</span> </span><span class="COMM">/**
+<span class='line'> 42</span>  * Instantiates the PetStore namespace proxy of the Swagger projects demo API
+<span class='line'> 43</span>  * @name getSwaggerProxy
+<span class='line'> 44</span>  * @memberof PetStore
+<span class='line'> 45</span>  * @function
+<span class='line'> 46</span>  * @param  {string} swaggerSpecURL
+<span class='line'> 47</span>  * @returns {PetStore}
+<span class='line'> 48</span>  */</span><span class="WHIT">
+<span class='line'> 49</span> </span><span class="KEYW">const</span><span class="WHIT"> </span><span class="NAME">getSwaggerProxy</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Meteor.wrapAsync</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 50</span> </span><span class="WHIT">  </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">wrpr</span><span class="PUNC">(</span><span class="NAME">swaggerSpec</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">callback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 51</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">prxySwagger</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Client</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="WHIT">      </span><span class="NAME">url</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">swaggerSpec</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">      </span><span class="NAME">success</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">suxs</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">callback</span><span class="PUNC">(</span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">prxySwagger</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">      </span><span class="NAME">error</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">errs</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">callback</span><span class="PUNC">(</span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">prxySwagger</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 55</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 56</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 57</span> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="COMM">/**
+<span class='line'> 59</span>  * This is the exported PetStore proxy that can be used by any server-side JavaScript code.
+<span class='line'> 60</span>  * @exports PetStore
+<span class='line'> 61</span>  */</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="NAME">PetStore</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">getSwaggerProxy</span><span class="PUNC">(</span><span class="NAME">swaggerSpecURL</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 63</span> 
+<span class='line'> 64</span> </span><span class="COMM">/**
+<span class='line'> 65</span>  * The PetStore.sync name space.
+<span class='line'> 66</span>  * Contains synchronous representations of needed
+<span class='line'> 67</span>  * asynchronous methods of the PetStore.
+<span class='line'> 68</span>  * @namespace PetStore.sync
+<span class='line'> 69</span>  * @memberof PetStore
+<span class='line'> 70</span>  */</span><span class="WHIT">
+<span class='line'> 71</span> </span><span class="NAME">PetStore.sync</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 73</span>    * Get a pet by its nrecord id.
+<span class='line'> 74</span>    * @name getPetById
+<span class='line'> 75</span>    * @memberof PetStore.sync
+<span class='line'> 76</span>    * @function
+<span class='line'> 77</span>    * @param  {integer} petNum
+<span class='line'> 78</span>    * @returns {json}
+<span class='line'> 79</span>    */</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="NAME">PetStore.sync.getPetById</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Meteor.wrapAsync</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 81</span> </span><span class="WHIT">  </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">wrpr</span><span class="PUNC">(</span><span class="NAME">args</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">headers</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">callback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 82</span> </span><span class="WHIT">    </span><span class="NAME">PetStore.pet.getPetById</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">args</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">headers</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="WHIT">      </span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">suxs</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">theResult</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 84</span> </span><span class="WHIT">        </span><span class="NAME">Logger.info</span><span class="PUNC">(</span><span class="WHIT">  </span><span class="STRN">'Got pet #'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">args.petId</span><span class="WHIT">  </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 85</span> </span><span class="WHIT">        </span><span class="NAME">callback</span><span class="PUNC">(</span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">theResult</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 86</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 87</span> </span><span class="WHIT">      </span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">errs</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">theError</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 88</span> </span><span class="WHIT">        </span><span class="NAME">Logger.error</span><span class="PUNC">(</span><span class="STRN">'For Id #'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">args.petId</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">' : '</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">theError.statusText</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 89</span> </span><span class="WHIT">        </span><span class="NAME">callback</span><span class="PUNC">(</span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">theError</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 90</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 91</span> </span><span class="WHIT">    </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 92</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 93</span> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 94</span> 
+<span class='line'> 95</span> </span><span class="COMM">/**
+<span class='line'> 96</span>  * Exposure to the Meteor name space.
+<span class='line'> 97</span>  * This member of the Meteor namespace groups together the methods that this package will expose to client-side JavaScript
+<span class='line'> 98</span>  * @namespace Meteor.package-ci
+<span class='line'> 99</span>  */</span><span class="WHIT">
+<span class='line'>100</span> </span><span class="NAME">Meteor.methods</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>101</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>102</span>    * Get a pet by its nrecord id.
+<span class='line'>103</span>    * @name getPetById
+<span class='line'>104</span>    * @memberof Meteor.package-ci
+<span class='line'>105</span>    * @method
+<span class='line'>106</span>    * @param  {integer} petNum The PetStore demo API seems to permit full CRUD authority to anonymous users, so we use a couple of very large numbers to minimize the risk of spurious test failure.
+<span class='line'>107</span>    * @returns {json}
+<span class='line'>108</span>    */</span><span class="WHIT">
+<span class='line'>109</span> </span><span class="WHIT">  </span><span class="NAME">package</span><span class="PUNC">-</span><span class="NAME">ci_getPetById</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">getPetById</span><span class="PUNC">(</span><span class="NAME">petNum</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>110</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">aPetVO</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">PetStore.sync.getPetById</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'>111</span> </span><span class="WHIT">      </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">petId</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">petNum</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>112</span> </span><span class="WHIT">      </span><span class="PUNC">{</span><span class="NAME">responseContentType</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'application/json'</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>113</span> </span><span class="WHIT">    </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">aPetVO.status</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NUMB">404</span><span class="WHIT">
+<span class='line'>115</span> </span><span class="WHIT">    </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="NAME">name</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">JSON.parse</span><span class="PUNC">(</span><span class="NAME">aPetVO.data</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">message</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>116</span> </span><span class="WHIT">    </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">aPetVO.obj</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>117</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>118</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>119</span> </span></pre></body></html>
