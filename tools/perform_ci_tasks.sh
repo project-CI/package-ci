@@ -25,7 +25,7 @@ declare DOCS_ZIP="${TEMP_DIR}/pkg_docs.zip";
 function commitDocsToGitHubPages() {
 
   set -e;
-
+  
   echo -e "Publishing to GitHub Pages.";
   mkdir -p ${TEMP_DIR};
 
