@@ -15,7 +15,7 @@ function checkCodeStyle() {
 function generateDocs() {
 
   echo -e "Regenerating documentation . . .";
-  jsdoc -d=./docs .;
+  jsdoc -d ./docs .;
   echo -e " . . . documentation regenerated.";
 
 }
