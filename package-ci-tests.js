@@ -37,3 +37,20 @@ Tinytest.add('Check inequality', function sanityCheckNEQ(test) {
   test.equal(true, true);
   // console.log('ººº Yoo Hoo ººº');
 });
+
+/**
+ * Can we retrieve a pet by its ID number?
+ * @name obtainPetById
+ * @memberof Tinytest
+ * @function
+ * @param  test {Tinytest} Pet #petNum is : expected
+ * @return {None}
+ */
+const petNum = 6133627028;
+const expected = 'Your fluffy little wolverine.';
+Tinytest.add('Pet #' + petNum + ' is : ' + expected, function obtainPetById(test) {
+  var aPet = PetStore.sync.getPetById(
+    { petId: petNum}, {responseContentType: 'application/json'}
+  );
+  test.equal(aPet.obj.name, expected);
+});
