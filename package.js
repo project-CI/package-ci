@@ -1,6 +1,6 @@
 Package.describe({
   name: 'project-ci:package-ci',
-  version: '0.0.3',
+  version: '0.0.4',
   summary: 'Test project for package development',
   // URL to the Git repository containing the source code for this package.
   git: 'https://github.com/project-ci/package-ci.git',
